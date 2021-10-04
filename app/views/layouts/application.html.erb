@@ -9,6 +9,10 @@
   </head>
 
   <body>
+    <header>
+      <% if admin_signed_in? %>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
