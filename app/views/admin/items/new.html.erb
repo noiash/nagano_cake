@@ -36,11 +36,12 @@
 
         <div class="form-group">
           <label for="item_status">販売ステータス</label>
-          <%= f.label :is_active, '販売中', value: 1 %>
-          <%= f.radio_button :is_active, '1' %>
 
-          <%= f.label :is_active, '販売停止中', value: 2 %>
-          <%= f.radio_button :is_active, '2' %>
+          <%= f.radio_button :is_active, true %>
+          <%= f.label :is_active, '販売中' %>
+
+          <%= f.radio_button :is_active, false %>
+          <%= f.label :is_active, '販売停止中' %>
 
         </div>
 
