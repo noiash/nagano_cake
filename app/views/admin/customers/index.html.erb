@@ -13,11 +13,10 @@
   <tbody>
   <% @customers.each do |customer| %>
     <tr>
-      <td></td>
-      <td>
-      </td>
-      <td></td>
-      <td></td>
+      <td><%= customer.id %></td>
+      <td><%= customer.first_name %></td>
+      <td><%= customer.email %></td>
+      <td><%= customer.is_active %></td>
     </tr>
 
   <% end %>

@@ -42,7 +42,7 @@
                 </li>
               <% elsif customer_signed_in? %>
                 <li>
-                  <%= link_to　"マイページ", customers_path, class: 'btn btn-outline-dark' %>
+                  <%= link_to "マイページ", customer_path(current_customer), class: 'btn btn-outline-dark' %>
                 </li>
                 <li>
                   <%= link_to "商品一覧", items_path, class: 'btn btn-outline-dark' %>
@@ -51,7 +51,7 @@
                   <%= link_to "カート", cart_items_path, class: 'btn btn-outline-dark' %>
                 </li>
                 <li>
-                  <%= link_to "ログアウト", customers_sign_aut_path, class: 'btn btn-outline-dark' %>
+                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-dark' %>
                 </li>
               <% else %>
                 <li>
