@@ -4,55 +4,48 @@
   <%= render "public/customers/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <p>名前</p>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+    <p>名前<%= f.label :first_name, "(姓)" %>
+    <%= f.text_field :first_name, autofocus: true, required: true %>
+    <%= f.label :last_name, "(名)" %>
+    <%= f.text_field :last_name, autofocus: true, required: true %>
+    </p>
   </div>
 
   <div class="field">
-    <p>フリガナ</p>
-    <%= f.label :last_name_kana %>
-    <%= f.text_field :last_name_kana %>
-    <%= f.label :first_name_kana %>
-    <%= f.text_field :first_name_kana %>
+    <p>フリガナ<%= f.label :first_name_kana, "(セイ)" %>
+    <%= f.text_field :first_name_kana, autofocus: true, required: true %>
+    <%= f.label :last_name_kana, "(メイ)" %>
+    <%= f.text_field :last_name_kana, autofocus: true, required: true %>
+    </p>
   </div>
 
   <div class="field">
-    <p>メールアドレス</p>
-    <%= f.label :email %>
+    <%= f.label :email, "メールアドレス" %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <p>郵便番号</p>
-    <%= f.label :postal_code %>
-    <%= f.postal_code_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+    <%= f.label :postal_code, "郵便番号" %>
+    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
   </div>
 
   <div class="field">
-    <p>住所</p>
-    <%= f.label :address %>
+    <%= f.label :address, "住所" %>
     <%= f.text_field :address, size: "50" %>
   </div>
 
   <div class="field">
-    <p>電話番号</p>
-    <%= f.label :telephone_number %>
+    <%= f.label :telephone_number, "電話番号" %>
     <%= f.text_field :telephone_number %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %>
+    <%= f.label :password, "パスワード(６文字以上)" %>
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %>
+    <%= f.label :password_confirmation, "パスワード(確認用)" %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
