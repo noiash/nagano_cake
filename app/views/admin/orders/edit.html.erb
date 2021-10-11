@@ -1,22 +1,27 @@
-<span class="bg-light text-dark">商品一覧</span>
+<span class="bg-light text-dark">注文履歴詳細</span>
 
-<%= link_to "+", new_admin_item_path, class: 'btn btn-default' %>
+<p>購入者</p>
+<p>注文日</p>
+<p>配送先</p>
+<p>支払い方法</p>
+<p>注文ステータス</p>
 
 <div class="col-md-4 offset-md-1">
 <table class="table">
   <thead>
     <tr>
-      <th>商品ID</th>
       <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>制作ステータス</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-  <% @items.each do |item| %>
+  <% @order_details.each do |order_detail| %>
     <tr>
-      <td><%= item.id %></td>
+      <td><%= order_detail.  %></td>
       <td>
         <%= link_to admin_item_path(item) do %>
         <%= item.name %>
