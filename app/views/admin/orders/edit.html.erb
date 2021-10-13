@@ -59,7 +59,7 @@
       <td><%= order_detail.item.name %></td>
       <td><%= order_detail.price %></td>
       <td><%= order_detail.amount %></td>
-      <td><%= order.price * amount %></td>
+      <td><%= order_detail.price %> * <%= order_detail.amount %></td>
   <% end %>
   <%= form_with model: @order_detail, url: admin_order_detail_path(@order_detail), local: true do |f| %>
       <td>制作ステータス
@@ -74,7 +74,7 @@
 
 
 <div class="total">
-  <p>商品合計</p>
-  <p>送料</p>
-  <p>請求金額合計</p>
+  <p>商品合計<%= order_detail.price %> * <%= order_detail.amount %></p>
+  <p>送料<%= @order.postage %></p>
+  <p>請求金額合計<%= @order.billing_amount %></p>
 </div>
