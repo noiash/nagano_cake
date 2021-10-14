@@ -17,10 +17,19 @@
 
  .navbar {
    border-bottom: 1px solid #000;
+   height: 100px;
  }
  .h5 {
    font-size: 5px;
  }
- footer {
-  border-top: 1px solid #000;
+ .fixed-bottom {
+  margin-top: 50px;
+  margin-bottom: 70px;
+ }
+ table {
+  table-layout: fixed;
+  width: 100%;
+ }
+ table th {
+  width: 200px;
  }

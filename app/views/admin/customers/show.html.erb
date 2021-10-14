@@ -1,19 +1,50 @@
-<span class="bg-light text-dark"><%= @customer.full_name %>さんの会員詳細</span>
+<div class="col-md-10 offset-md-1">
+  <div class="d-flex align-items-center">
+  <p class="p-3 mb-10 bg-info text-white"><%= @customer.full_name %>さんの会員詳細</p>
+  </div>
 
-<p>会員ID<%= @customer.id %></p>
-<p>氏名<%= @customer.full_name %></p>
-<p>フリガナ<%= @customer.full_name_kana %></p>
-<p>郵便番号<%= @customer.postal_code %></p>
-<p>住所<%= @customer.address %></p>
-<p>電話番号<%= @customer.telephone_number %></p>
-<p>メールアドレス<%= @customer.email %></p>
-<p>会員ステータス
-<% if @customer.is_active == true %>
-  有効
-<% else %>
-  退会
-<% end %>
-</p>
+<table class="table">
+  <tbody class="tbody-light">
+    <tr>
+      <td>会員ID</td>
+      <td><%= @customer.id %></td>
+    </tr>
+  　<tr>
+  　   <td>氏名</td>
+  　   <td><%= @customer.full_name %></td>
+  　</tr>
+  　   <td>フリガナ</td>
+  　   <td><%= @customer.full_name_kana %></td>
+  　<tr>
+      <td>郵便番号</td>
+      <td><%= @customer.postal_code %></td>
+  　</tr>
+    <tr>
+      <td>住所</td>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <td>電話番号</td>
+      <td><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @customer.email %></td>
+    </tr>
+    <tr>
+      <td>会員ステータス</td>
+      <td>
+        <% if @customer.is_active == true %>
+  　　　　　有効
+　　　　<% else %>
+  　　　　退会
+　　　　<% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
+<div class="text-center">
 <%= link_to "編集する", edit_admin_customer_path, class: 'btn btn-success' %>
 <p>注文履歴一覧を見る</p>
+</div>

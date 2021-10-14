@@ -1,10 +1,12 @@
-<span class="bg-light text-dark">商品一覧</span>
-
-<%= link_to "+", new_admin_item_path, class: 'btn btn-default' %>
-
-<div class="col-md-4 offset-md-1">
+<div class="col-md-10 offset-md-1">
+  <div class="d-flex align-items-center">
+  <p class="p-3 mb-10 bg-info text-white">商品一覧</p>
+  </div>
+  <div class="text-right">
+  <%= link_to "+", new_admin_item_path, class: 'btn btn-primary rounded-circle p-0', style: 'width:2rem;height:2rem;' %>
+  </div>
 <table class="table">
-  <thead>
+  <thead class="thead-light">
     <tr>
       <th>商品ID</th>
       <th>商品名</th>
@@ -27,9 +29,9 @@
 
       <td>
         <% if item.is_active == true %>
-          <p>販売中</p>
+          <p class="text-success">販売中</p>
         <% else %>
-          <p>販売停止中</p>
+          <p class="text-secondary">販売停止中</p>
         <% end %>
       </td>
     </tr>

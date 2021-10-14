@@ -1,4 +1,7 @@
-<span class="bg-light text-dark">会員情報編集</span>
+<div class="col-md-10 offset-md-1">
+  <div class="d-flex align-items-center">
+  <p class="p-3 mb-10 bg-info text-white"><%= @customer.full_name %>さんの会員詳細</p>
+  </div>
 
 <%= form_with model: @customer, url: admin_customer_path(@customer), local: true do |f| %>
 <p>会員ID<%= @customer.id %></p>
