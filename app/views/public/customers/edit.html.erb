@@ -1,0 +1,54 @@
+<div class="col-md-10 offset-md-1">
+  <div class="d-flex align-items-center">
+  <p class="p-3 mb-10 bg-info text-white">会員情報編集</p>
+  </div>
+
+<%= form_with model: @customer, url: customer_path(@customer), local: true do |f| %>
+<div class="field">
+  <p>氏名
+    <%= f.text_field :first_name, autofocus: true, required: true %>
+    <%= f.text_field :last_name, autofocus: true, required: true %>
+  </p>
+</div>
+
+<div class="field">
+  <p>フリガナ
+    <%= f.text_field :first_name_kana, autofocus: true, required: true %>
+    <%= f.text_field :last_name_kana, autofocus: true, required: true %>
+  </p>
+</div>
+
+<div class="field">
+<p>郵便番号
+<%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+</p>
+</div>
+
+<div class="field">
+<p>住所
+<%= f.text_field :address, size: "50" %>
+</p>
+</div>
+
+<div class="field">
+<p>電話番号
+<%= f.text_field :telephone_number %>
+</p>
+</div>
+
+<div class="field">
+<p>メールアドレス
+<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+</p>
+</div>
+
+<%= f.submit "編集内容を保存", class: 'btn btn-success' %>
+<%= link_to "退会する", customers_unsubscribe_path(@customer), class: 'btn btn-danger' %>
+
+<% end %>
+
+
+
+
+
+

@@ -1,26 +1,26 @@
-<h2>Log in</h2>
+<div class="login">
+  <h4 class="p-1 mb-1 bg-secondary">ログイン</h4></br>
+</div>
 
+<div class="login-text">
+  <h6 class="p-1 mb-1 bg-secondary">会員の方はこちらからログイン</h6>
+</div>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, "メールアドレス" %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    <%= f.label :password, "パスワード" %>
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン", class: 'btn btn-primary' %>
   </div>
 <% end %>
 
-<%= render "public/customers/shared/links" %>
+<div class="login-text">
+  <h6 class="p-1 mb-1 bg-secondary">会員登録がお済みでない方</h6></div>
+  <%= render "public/customers/shared/links" %>

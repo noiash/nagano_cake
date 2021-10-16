@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+　　<div class="col-md-10 offset-md-1">
+  　　<div class="d-flex align-items-center">
+  　　<p class="p-3 mb-10 bg-info text-white">配送先登録/一覧</p>
+  　　</div>
+
+
+
+    <div class="col-sm-12 col-md-6 px-sm-0 mx-auto">
+      <%= form_with model: @address, url: addresses_path, local: true do |f| %>
+　    <p>郵便番号(ハイフンなし)<%= f.text_field :postal_code %></p>
+　    <p>住所<%= f.text_field :address %></p>
+　    <p>宛名<%= f.text_field :name %></p>
+　    <%= f.submit "新規登録", class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6 offset-md-1">
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @addresses.each do |address| %>
+    <tr>
+      <td><%= address.postal_code %></td>
+      <td><%= address.address %></td>
+      <td><%= address.name %></td>
+      <td><%= link_to "編集する", edit_addresee_path(address), class: 'btn btn-success' %></td>
+    </tr>
+
+  <% end %>
+  </tbody>
+</table>
+</div>
