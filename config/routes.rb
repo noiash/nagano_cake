@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
 
-  devise_for :admins, path: 'admin'
+  devise_for :admin, controllers: {
+        sessions: 'admin/sessions'
+      }
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :admin do
@@ -19,17 +21,17 @@ Rails.application.routes.draw do
     :customers,
     module: 'public/customers'
     )
-    get '/' => 'homes#top'
+    root to: 'homes#top'
     get '/about' => 'homes#about'
     resources :items, only:[:index, :show]
-    resources :customers, only:[:show, :edit, :update]
     get '/customers/unsubscribe' => 'customers#unsubscribe'
     patch '/customers/withdraw' => 'customers#withdraw'
+    resources :customers, only:[:show, :edit, :update]
     resources :cart_items, only:[:index, :update, :create, :destroy]
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+    get '/orders/complete' => 'orders#complete'
     resources :orders, only:[:new, :index, :show, :create]
     post '/orders/confirm' => 'orders#confirm'
-    get '/orders/complete' => 'orders#complete'
     resources :addresses, except:[:show, :new]
   end
 

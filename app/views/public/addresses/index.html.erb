@@ -8,7 +8,7 @@
 
 
     <div class="col-sm-12 col-md-6 px-sm-0 mx-auto">
-      <%= form_with model: @address, url: addresses_path, local: true do |f| %>
+      <%= form_with model: @address, url: addresses_path(@address), local: true do |f| %>
 　    <p>郵便番号(ハイフンなし)<%= f.text_field :postal_code %></p>
 　    <p>住所<%= f.text_field :address %></p>
 　    <p>宛名<%= f.text_field :name %></p>
@@ -34,7 +34,10 @@
       <td><%= address.postal_code %></td>
       <td><%= address.address %></td>
       <td><%= address.name %></td>
-      <td><%= link_to "編集する", edit_addresee_path(address), class: 'btn btn-success' %></td>
+      <td>
+        <%= link_to "編集する", edit_address_path(address), class: 'btn btn-success' %>
+        <%= link_to "削除する", address_path(address), method: :delete, class: 'btn btn-danger' %>
+      </td>
     </tr>
 
   <% end %>
