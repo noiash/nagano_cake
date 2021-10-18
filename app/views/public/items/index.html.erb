@@ -1,0 +1,11 @@
+<h1>商品一覧</h1>
+
+<% @items.each do |item| %>
+  <div class="item">
+    <%= link_to item_path(item) do %>
+    <%= attachment_image_tag item, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+    <% end %>
+    <%= item.name %>
+    <%= item.price %>
+  </div>
+<% end %>
