@@ -1,1 +1,19 @@
-<h1>注文情報入力</h1>
+<div class="container">
+  <div class="row">
+　　<div class="col-md-10 offset-md-1">
+  　　<div class="d-flex align-items-center">
+  　　<p class="p-3 mb-10 bg-info text-white">注文情報入力</p>
+  　　</div>
+
+  　<%= form_with model: @order, url: orders_confirm_path, local: true do |f| %>
+  　<p>支払い方法
+  　　  <%= f.radio_button :payment_method %>
+      <%= f.label :payment_method, 'クレジットカード' %>
+
+      <%= f.radio_button :payment_method %>
+      <%= f.label :payment_method, '銀行振込' %>
+  　</p>
+  　<% end %>
+  　</div>
+  </div>
+</div>
