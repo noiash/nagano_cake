@@ -10,7 +10,7 @@ ja:
         sent: "発送中"
       payment_method:
         credit_card: "クレジットカード"
-        transfer: "銀行振り込み"
+        transfer: "銀行振込"
     order_detail:
       making_status:
         cannat_be_manufactured: "製作不可"

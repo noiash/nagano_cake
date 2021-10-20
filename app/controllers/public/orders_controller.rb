@@ -5,6 +5,24 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    @order = Order.new
+    @cart_items = current_customer.cart_items
+    @order.payment_method = params[:order][:payment_method]
+    if params[:order][:select_method] == 1
+      @order.address = current_customer.address
+    elsif params[:order][:select_method] == 2
+      @sta = params[:order][:order_address].to_i
+      @order_address = Address.find(@sta)
+      @order.postal_code = @order_address.postal_code
+      @order.order_address = @order_address.address
+      @order.name = @order_address.name
+    elsif params[:order][:select_method] == 3
+      @order.postal_code = params[:order][:postal_code]
+      @order.order_address  = params[:order][:order_address]
+      @order.name = params[:order][:name]
+    end
+    redirect_to orders_confirm_path
+
   end
 
   def complete
