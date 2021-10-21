@@ -28,10 +28,10 @@ Rails.application.routes.draw do
     patch '/customers/withdraw' => 'customers#withdraw'
     resources :customers, only:[:show, :edit, :update]
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
-    resources :cart_items, only:[:index, :update, :create, :destroy]
-    get '/orders/complete' => 'orders#complete'
-    resources :orders, only:[:new, :index, :show, :create]
     post '/orders/confirm' => 'orders#confirm'
+    get '/orders/complete' => 'orders#complete'
+    resources :cart_items, only:[:index, :update, :create, :destroy]
+    resources :orders, only:[:new, :index, :show, :create]
     resources :addresses, except:[:show, :new]
   end
 
