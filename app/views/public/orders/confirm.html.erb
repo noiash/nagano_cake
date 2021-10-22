@@ -25,6 +25,16 @@
       <% end %>
       </tbody>
     </table>
+
+      <% @orders, @total.each do |order, total| %>
+    <table>
+      <tr><th>送料</th><td><%= order.postage %> </td></tr>
+      <tr><th>商品合計</th><td><%= order.cart_item.total %></td></tr>
+      <tr><th>請求金額</th><td><%= order.billing_amount %></td>
+      <% @billing += (order.postage).floor + order.cart_item.total %>
+      </tr>
+      <% end %>
+    </table>
     </div>
   </div>
 </div>
