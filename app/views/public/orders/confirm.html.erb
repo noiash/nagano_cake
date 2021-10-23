@@ -26,15 +26,25 @@
       </tbody>
     </table>
 
-      <% @orders, @total.each do |order, total| %>
     <table>
-      <tr><th>送料</th><td><%= order.postage %> </td></tr>
-      <tr><th>商品合計</th><td><%= order.cart_item.total %></td></tr>
-      <tr><th>請求金額</th><td><%= order.billing_amount %></td>
-      <% @billing += (order.postage).floor + order.cart_item.total %>
+      <tr><th>送料</th><td><%= @order.postage %> </td></tr>
+      <tr><th>商品合計</th><td><%= @total %></td></tr>
+      <tr><th>請求金額</th><td><%= @order.billing_amount %></td>
+      <% @billing += @total + 500 %>
       </tr>
       <% end %>
     </table>
+
+    <div class="">
+      <p>支払い方法<%= @order.payment_method %></p>
+    </div>
+
+    <div class="">
+      <%= form_with model: @address, url: orders_complete_path, local: true do |f| %>
+      <%= f.hidden_field :address_id, value: @address.id %>
+      <p>お届け先<%= @address %></p>
+      <% end %>
+    </div>
     </div>
   </div>
 </div>

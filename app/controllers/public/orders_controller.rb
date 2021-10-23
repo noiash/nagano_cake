@@ -4,18 +4,18 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    if @order = params[:order][:select_address] == 1
+    if params[:select_address] == 1
       @order.postal_code = current_customer.postal_code
    　  @order.address = current_customer.address
 　　  @order.name = current_customer.full_name
 
-    elsif @order = params[:order][:select_address] == 2
+    elsif params[:select_address] == 2
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
       @order.address = @address.address
       @order.name = @address.name
 
-    elsif @order = params[:order][:select_address] == 3
+    elsif params[:select_address] == 3
       @order = Order.new(order_params)
 
     end
