@@ -26,13 +26,13 @@
       <%= current_customer.full_name %>
       <br>
 
-      <%= f.radio_button :select_address, value: 2 %>
+      <%= f.radio_button :select_address, 2 %>
       <%= f.label :select_address, '登録済住所から選択' %>
       <br>
       <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :full_address) %>
 
 　　　<br>
-      <%= f.radio_button :select_address, value: 3 %>
+      <%= f.radio_button :select_address, 3 %>
       <%= f.label :select_address, '新しいお届け先' %>
       <br>
 

@@ -38,9 +38,13 @@
     </div>
 
     <div class="">
-      <%= form_with url: orders_complete_path, local: true do |f| %>
-      <%= f.hidden_field :address_id, value: @ %>
-      <p>お届け先<%= @order.address %></p>
+      <%= form_with model: @order, url: orders_path, local: true do |f| %>
+      <%= f.hidden_field :address, value: @order.address %>
+      <%= f.hidden_field :name, value: @order.name %>
+      <%= f.hidden_field :postal_code, value: @order.postal_code %>
+      <p>お届け先〒<%= @order.postal_code %><%= @order.address %><%= @order.name %></p>
+
+      <%= f.submit "注文を確定する", class: 'btn btn-success' %>
       <% end %>
     </div>
     </div>

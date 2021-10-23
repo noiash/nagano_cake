@@ -1,6 +1,7 @@
 class Public::OrdersController < ApplicationController
 
   def new
+    @order = Order.new
   end
 
   def confirm
@@ -10,25 +11,25 @@ class Public::OrdersController < ApplicationController
     @billing_amount = 0
     @postage = 800
 
-    if params[:payment_method] == "credit_card"
+    if params[:order][:payment_method] == "credit_card"
       @order.payment_method = "credit_card"
-    elsif params[:payment_method] == "1"
-      session[:customer][:transfer] = 1
+    elsif params[:order][:payment_method] == "transfer"
+      @order.payment_method = "transfer"
 
     end
 
-    if params[:select_address] == "{:value=>1}"
+    if params[:order][:select_address] == "1"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.full_name
 
-    elsif params[:select_address] == 2
+    elsif params[:order][:select_address] == "2"
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
       @order.address = @address.address
       @order.name = @address.name
 
-    elsif params[:select_address] == 3
+    elsif params[:order][:select_address] == "3"
       @order = Order.new(order_params)
 
     end
@@ -39,6 +40,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    #@order = Order.new(customer_id: current_customer.id, postage: 800)
+    @order = Order.new(order_params)
+    @order.save
+    redirect_to orders_complete_path
+
   end
 
   def index
