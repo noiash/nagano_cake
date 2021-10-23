@@ -4,10 +4,23 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    if params[:select_address] == 1
+    @order = Order.new(customer_id: current_customer.id, postage: 800)
+    @cart_items = current_customer.cart_items
+    @total = 0
+    @billing_amount = 0
+    @postage = 800
+
+    if params[:payment_method] == "credit_card"
+      @order.payment_method = "credit_card"
+    elsif params[:payment_method] == "1"
+      session[:customer][:transfer] = 1
+
+    end
+
+    if params[:select_address] == "{:value=>1}"
       @order.postal_code = current_customer.postal_code
-   　  @order.address = current_customer.address
-　　  @order.name = current_customer.full_name
+      @order.address = current_customer.address
+      @order.name = current_customer.full_name
 
     elsif params[:select_address] == 2
       @address = Address.find(params[:order][:address_id])
@@ -19,8 +32,6 @@ class Public::OrdersController < ApplicationController
       @order = Order.new(order_params)
 
     end
-
-    redirect_to orders_confirm_path
 
   end
 

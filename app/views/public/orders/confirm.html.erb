@@ -11,7 +11,6 @@
         <th>単価(税込)</th>
         <th>数量</th>
         <th>小計</th>
-        <th></th>
       </thead>
       <tbody>
       <% @cart_items.each do |cart_item| %>
@@ -27,12 +26,11 @@
     </table>
 
     <table>
-      <tr><th>送料</th><td><%= @order.postage %> </td></tr>
+      <tr><th>送料</th><td><%= @postage %> </td></tr>
       <tr><th>商品合計</th><td><%= @total %></td></tr>
-      <tr><th>請求金額</th><td><%= @order.billing_amount %></td>
-      <% @billing += @total + 500 %>
+      <% @billing_amount += @total + @postage %>
+      <tr><th>請求金額</th><td><%= @billing_amount %></td>
       </tr>
-      <% end %>
     </table>
 
     <div class="">
@@ -40,9 +38,9 @@
     </div>
 
     <div class="">
-      <%= form_with model: @address, url: orders_complete_path, local: true do |f| %>
-      <%= f.hidden_field :address_id, value: @address.id %>
-      <p>お届け先<%= @address %></p>
+      <%= form_with url: orders_complete_path, local: true do |f| %>
+      <%= f.hidden_field :address_id, value: @ %>
+      <p>お届け先<%= @order.address %></p>
       <% end %>
     </div>
     </div>
