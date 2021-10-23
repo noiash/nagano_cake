@@ -19,7 +19,13 @@
         <% end %>
       </td>
       <td><%= order.name %></td>
-      <td></td>
+      <td>
+        <% @sum = 0 %>
+        <% @cart_items.each do |cart_item| %>
+        <% @sum += cart_item.amount %>
+        <% end %>
+        <%= @sum %>
+      </td>
       <td><%= order.status %></td>
     </tr>
 
