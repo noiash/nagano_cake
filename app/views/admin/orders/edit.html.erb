@@ -38,8 +38,8 @@
 <div class="field">
   <p>
     注文ステータス
-    <%= f.select :status, [['入金待ち', 0], ['入金確認', 1], ['制作中', 2], ['発送準備中', 3], ['発送済み', 4]], { include_blank: '入金待ち'}, { class: 'form-control' } %>
-    <%= f.submit "更新", admin_order_path(@order), class: 'btn btn-success' %>
+    <%= f.select :status, [['入金待ち', 0], ['入金確認', 1], ['制作中', 2], ['発送準備中', 3], ['発送済み', 4]], { class: 'form-control' } %>
+    <%= f.submit "更新", class: 'btn btn-success' %>
   </p>
 </div>
 <% end %>
@@ -55,7 +55,6 @@
       <th>数量</th>
       <th>小計</th>
       <th>制作ステータス</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -65,21 +64,21 @@
       <td><%= order_detail.price %></td>
       <td><%= order_detail.amount %></td>
       <td><%= order_detail.price * order_detail.amount %></td>
-  <% end %>
-  <%= form_with model: @order_detail, url: admin_order_detail_path(@order_detail), local: true do |f| %>
-      <td>制作ステータス
-      <%= f.select :making_status, [['制作不可', 0], ['制作待ち', 1], ['制作中', 2], ['制作完了', 3]], { include_blank: '制作不可'}, { class: 'form-control' } %>
-      <%= link_to "更新", admin_order_detail_path(@order_detail), class: 'btn btn-success' %>
-      </td>
-  <% end %>
 
+      <%= form_with model: @order.order_details, url: admin_order_detail_path(order_detail), local: true do |f| %>
+      <td>制作ステータス
+      <%= f.select :making_status, [['制作不可', 0], ['制作待ち', 1], ['制作中', 2], ['制作完了', 3]], { class: 'form-control' } %>
+      <%= link_to "更新", admin_order_detail_path(order_detail), class: 'btn btn-success' %>
+      </td>
+      <% end %>
+  <% end %>
   </tbody>
 </table>
 </div>
 
 
 <div class="total">
-  <p>商品合計<%= order_detail.price %> * <%= order_detail.amount %></p>
+  <p>商品合計<%= @order.billing_amount - @order.postage %></p>
   <p>送料<%= @order.postage %></p>
   <p>請求金額合計<%= @order.billing_amount %></p>
 </div>

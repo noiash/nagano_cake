@@ -19,7 +19,7 @@
         <td><%= order.created_at %></td>
         <td><%=order.postal_code %><%= order.address %><%= order.name %></td>
         <td>
-          <% @order_details.each do |order_detail| %>
+          <% order.order_details.each do |order_detail| %>
           <%= order_detail.item.name %>
           <% end %>
         </td>
