@@ -1,10 +1,15 @@
-<span class="bg-light text-dark">注文履歴詳細</span>
+<div class="container">
+  <div class="row">
+　　<div class="col-md-10 offset-md-1">
+  　　<div class="d-flex align-items-center">
+  　　<p class="p-3 mb-10 bg-info text-white">注文履歴詳細</p>
+  　　</div>
 
 
 <div class="field">
   <p>
     購入者
-    <%= @order.customer.name %>
+    <%= @order.customer.full_name %>
   </p>
 </div>
 
@@ -18,7 +23,7 @@
 <div class="field">
   <p>
   配送先
-  <%= @order.postal_code, address, name %>
+  <%= @order.postal_code %><% @order.address %><%= @order.name %>
   </p>
 </div>
 
@@ -34,7 +39,7 @@
   <p>
     注文ステータス
     <%= f.select :status, [['入金待ち', 0], ['入金確認', 1], ['制作中', 2], ['発送準備中', 3], ['発送済み', 4]], { include_blank: '入金待ち'}, { class: 'form-control' } %>
-    <%= link_to "更新", admin_order_path(@order), class: 'btn btn-success' %>
+    <%= f.submit "更新", admin_order_path(@order), class: 'btn btn-success' %>
   </p>
 </div>
 <% end %>
@@ -59,7 +64,7 @@
       <td><%= order_detail.item.name %></td>
       <td><%= order_detail.price %></td>
       <td><%= order_detail.amount %></td>
-      <td><%= order_detail.price %> * <%= order_detail.amount %></td>
+      <td><%= order_detail.price * order_detail.amount %></td>
   <% end %>
   <%= form_with model: @order_detail, url: admin_order_detail_path(@order_detail), local: true do |f| %>
       <td>制作ステータス

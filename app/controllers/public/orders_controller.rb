@@ -71,6 +71,21 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @order_details = OrderDetail.all
+    @order = Order.find(params[:id])
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+    @order_detail = OrderDetail.find({
+      order_id: @order.id,
+      item_id: cart_item.item_id,
+      price: cart_item.item.with_tax_price,
+      amount: cart_item.amount,
+      making_status: 0
+      })
+
+      @total +=  (cart_item.item.price * 1.1).floor * cart_item.amount
+    end
+
   end
 
   private
