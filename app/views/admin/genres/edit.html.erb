@@ -6,7 +6,7 @@
   　　<p class="p-3 mb-10 bg-info text-white">ジャンル編集</p>
   　　</div>
       <p class="h6">ジャンル名</p>
-      <%= form_with model: @genre, url: admin_genres_path, local: true do |f| %>
+      <%= form_with model: @genre, url: admin_genre_path, local: true do |f| %>
 　     <%= f.text_field :name %>
 　     <%= f.submit "変更を保存", class: 'btn btn-success' %>
       <% end %>

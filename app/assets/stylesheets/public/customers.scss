@@ -1,12 +1,15 @@
 // Place all the styles related to the public/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-table {
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: 100px;
-}
+// table {
+//   border-collapse: collapse;
+//   table-layout: fixed;
+//   width: 100px;
+// }
 
 th, td {
   border: 1px solid #333;
+}
+.postal_code {
+  margin-right: 5px;
 }

@@ -1,9 +1,11 @@
-<div class="col-md-10 offset-md-1">
+<div class="container">
   <div class="d-flex align-items-center">
-  <p class="p-3 mb-10 bg-info text-white">会員情報編集</p>
+  <p class="p-3 mb-10 bg-info text-white"><%= @customer.full_name %>さんの会員編集</p>
   </div>
-
-<%= form_with model: @customer, url: customer_path(@customer), local: true do |f| %>
+  <%= form_with model: @customer, url: admin_customer_path(@customer), local: true do |f| %>
+    
+    <div class="row">
+      <div class="col-md-3"></div>
 <div class="field">
   <p>氏名
     <%= f.text_field :first_name, autofocus: true, required: true %>

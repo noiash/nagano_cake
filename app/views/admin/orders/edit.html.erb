@@ -1,84 +1,90 @@
 <div class="container">
   <div class="row">
-　　<div class="col-md-10 offset-md-1">
+　　<div class="col-md-12">
   　　<div class="d-flex align-items-center">
   　　<p class="p-3 mb-10 bg-info text-white">注文履歴詳細</p>
   　　</div>
 
 
-<div class="field">
-  <p>
-    購入者
-    <%= @order.customer.full_name %>
-  </p>
-</div>
+      <div class="field">
+        <p>
+          購入者
+          <%= @order.customer.full_name %>
+        </p>
+      </div>
 
-<div class="field">
-  <p>
-    注文日
-    <%= @order.created_at.strftime("%Y/%m/%d") %>
-  </p>
-</div>
+      <div class="field">
+        <p>
+          注文日
+          <%= @order.created_at.strftime("%Y/%m/%d") %>
+        </p>
+      </div>
 
-<div class="field">
-  <p>
-  配送先
-  <%= @order.postal_code %><% @order.address %><%= @order.name %>
-  </p>
-</div>
+      <div class="field">
+        <p>
+        配送先
+        <%= @order.postal_code %><% @order.address %><%= @order.name %>
+        </p>
+      </div>
 
-<div class="field">
-  <p>
-    支払い方法
-    <%= @order.payment_method %>
-  </p>
-</div>
+      <div class="field">
+        <p>
+          支払い方法
+          <%= @order.payment_method %>
+        </p>
+      </div>
 
-<%= form_with model: @order, url: admin_order_path(@order), local: true do |f| %>
-<div class="field">
-  <p>
-    注文ステータス
-    <%= f.select :status, [['入金待ち', 0], ['入金確認', 1], ['制作中', 2], ['発送準備中', 3], ['発送済み', 4]], { class: 'form-control' } %>
-    <%= f.submit "更新", class: 'btn btn-success' %>
-  </p>
-</div>
-<% end %>
-
-
-
-<div class="col-md-4 offset-md-1">
-<table class="table">
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th>制作ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @order_details.each do |order_detail| %>
-    <tr>
-      <td><%= order_detail.item.name %></td>
-      <td><%= order_detail.price %></td>
-      <td><%= order_detail.amount %></td>
-      <td><%= order_detail.price * order_detail.amount %></td>
-
-      <%= form_with model: @order.order_details, url: admin_order_detail_path(order_detail), local: true do |f| %>
-      <td>制作ステータス
-      <%= f.select :making_status, [['制作不可', 0], ['制作待ち', 1], ['制作中', 2], ['制作完了', 3]], { class: 'form-control' } %>
-      <%= link_to "更新", admin_order_detail_path(order_detail), class: 'btn btn-success' %>
-      </td>
+      <%= form_with model: @order, url: admin_order_path(@order), local: true do |f| %>
+      <div class="field">
+        <p>
+          注文ステータス
+          <%= f.select :status, [['入金待ち', 0], ['入金確認', 1], ['制作中', 2], ['発送準備中', 3], ['発送済み', 4]], { class: 'form-control' } %>
+          <%= f.submit "更新", class: 'btn btn-success' %>
+        </p>
+      </div>
       <% end %>
-  <% end %>
-  </tbody>
-</table>
-</div>
+    </div>
+  </div>
 
 
-<div class="total">
-  <p>商品合計<%= @order.billing_amount - @order.postage %></p>
-  <p>送料<%= @order.postage %></p>
-  <p>請求金額合計<%= @order.billing_amount %></p>
+
+  <div class="row">
+    <div class="col-md-8">
+    <table class="table">
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>制作ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @order_details.each do |order_detail| %>
+      <tr>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.price %></td>
+        <td><%= order_detail.amount %></td>
+        <td><%= order_detail.price * order_detail.amount %></td>
+
+        <%= form_with model: @order.order_details, url: admin_order_detail_path(order_detail), local: true do |f| %>
+        <td>制作ステータス
+        <%= f.select :making_status, [['制作不可', 0], ['制作待ち', 1], ['制作中', 2], ['制作完了', 3]], { class: 'form-control' } %>
+        <%= link_to "更新", admin_order_detail_path(order_detail), class: 'btn btn-success' %>
+        </td>
+        <% end %>
+    <% end %>
+    </tbody>
+  </table>
+  </div>
+
+
+    <div class="col-md-4">
+      <p>商品合計<%= @order.billing_amount - @order.postage %></p>
+      <p>送料<%= @order.postage %></p>
+      <p>請求金額合計<%= @order.billing_amount %></p>
+    </div>
+  </div>
 </div>
+

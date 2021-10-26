@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :authenticate_customer!, only:[:create]
+  before_action :authenticate_customer!, only:[:create, :index]
 
   def new
     @order = Order.new
@@ -66,7 +66,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = current_customer.orders
     @order_details = OrderDetail.all
     @cart_items = current_customer.cart_items
   end
