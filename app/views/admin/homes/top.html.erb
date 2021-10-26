@@ -6,7 +6,7 @@
   　　</div>
 
   　<table class="table table-hover table-inverse">
-      <thead>
+      <thead class="table-secondary">
         <tr>
           <th>注文日時</th>
           <th>購入者</th>
@@ -30,7 +30,7 @@
             <% end %>
             <%= total_amount %>
           </td>
-          <td><%= order.status %></td>
+          <td><%= order.status_i18n %></td>
         </tr>
       </tbody>
       <% end %>

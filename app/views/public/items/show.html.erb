@@ -1,15 +1,19 @@
- <div>
-   <%= attachment_image_tag @item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg" %>
- </div>
+ <div class="container">
+   <div class="row">
+     <div class="col-md-5 mt-5">
+       <%= attachment_image_tag @item, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg" %>
+     </div>
 
- <div>
-   <%= @item.name %>
-   <%= @item.introduction %>
-   <%= @item.price %>
- </div>
+     <div class="col-md-5 mt-5">
+      <p class="h3 fw-bold"><%= @item.name %></p><br>
+      <p><%= @item.introduction %></p><br>
+      <p>¥<%= @item.with_tax_price %>（税込）</p><br>
 
- <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
-   <%= f.hidden_field :item_id, value: @item.id %>
-   <%= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4], ['5',5], ['6',6], ['7',7], ['8',8], ['9',9], ['10',10]], { include_blank: '個数選択' } %>
-   <%= f.submit "カートに入れる", class: 'btn btn-primary' %>
- <% end %>
+      <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4], ['5',5], ['6',6], ['7',7], ['8',8], ['9',9], ['10',10]], { include_blank: '個数選択' } %>
+      <%= f.submit "カートに入れる", class: 'btn btn-success' %>
+      <% end %>
+     </div>
+   </div>
+ </div>
