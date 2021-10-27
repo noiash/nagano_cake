@@ -2,6 +2,9 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!, only:[:create, :index]
 
   def new
+    if current_customer.cart_items.empty?
+      redirect_to cart_items_path
+    end
     @order = Order.new
   end
 

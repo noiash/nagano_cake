@@ -1,6 +1,5 @@
 <div class="container">
-  <div class="row">
-　　<div class="col-md-10 offset-md-1">
+  <div class="row"><div class="col-md-10 offset-md-1">
   　　<div class="d-flex align-items-center">
   　　<p class="p-3 mb-10 bg-info text-white">注文履歴一覧</p>
   　　</div>
@@ -22,6 +21,7 @@
             <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
             <% end %>
             </td>
+
           <td><%= order.customer.full_name %></td>
           <td>
             <% total_amount = 0 %>
